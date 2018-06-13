@@ -2,31 +2,32 @@ import React from 'react'
 
 const Sidebar = (props) => {
   return (
-    <aside 
-      className="Sidebar" 
+    <aside
+      className="Sidebar"
       style={styles.sidebar}
     >
-      <div 
+      <div
         className="UserInfo"
         style={styles.children}
-        >
+      >
         <div className="Avatar"></div>
-          <div className="user">
-            {props.user.userName}
-          </div>
+        <div className="user">
+          {props.user.userName}
+        </div>
         <a href="#">
           <i className="fas fa-sign-out-alt"></i>
         </a>
       </div>
-      <h1 
+      <h1
         style={{
           ...styles.children,
           ...styles.h1,
         }}
       >
-        XTBC 18</h1>
-      <nav 
-        className="RoomList" 
+        XTBC 18
+      </h1>
+      <nav
+        className="RoomList"
         style={styles.children}
       >
         <h2>Rooms</h2>
@@ -50,15 +51,14 @@ const styles = {
   },
 
   children: {
-    padding: '0 rem'
+    padding: '0 1rem',
   },
 
   h1: {
     color: 'white',
     fontSize: '1.2rem',
-    marginTop:'0',
+    marginTop: '0',
   },
-
 }
 
-export default Sidebar 
+export default Sidebar

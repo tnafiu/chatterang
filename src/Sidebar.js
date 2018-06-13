@@ -1,23 +1,14 @@
 import React from 'react'
 
+import UserInfo from './UserInfo'
+
 const Sidebar = (props) => {
   return (
     <aside
       className="Sidebar"
       style={styles.sidebar}
     >
-      <div
-        className="UserInfo"
-        style={styles.children}
-      >
-        <div className="Avatar"></div>
-        <div className="user">
-          {props.user.userName}
-        </div>
-        <a href="#">
-          <i className="fas fa-sign-out-alt"></i>
-        </a>
-      </div>
+      <UserInfo user={props.user} />
       <h1
         style={{
           ...styles.children,
@@ -57,7 +48,7 @@ const styles = {
   h1: {
     color: 'white',
     fontSize: '1.2rem',
-    marginTop: '0',
+    marginTop: 0,
   },
 }
 

@@ -1,9 +1,18 @@
 import React from 'react'
 
-const Message = (props) => {
+import Avatar from './Avatar'
+import Metadata from './Metadata'
+
+const Message = ({ message }) => {
   return (
-    <div className="Message">
-      {props.message.userName}: {props.message.body}
+    <div className="Message" style={styles.message}>
+      <Avatar user={message.user} />
+      <div className="details" style={styles.details}>
+        <Metadata message={message} />
+        <div className="body">
+          {message.body}
+        </div>
+      </div>
     </div>
   )
 }
@@ -14,11 +23,11 @@ const styles = {
     marginTop: '1rem',
     padding: '0 1rem',
   },
-  
-  children: {
-    flex: '1',
+
+  details: {
+    flex: 1,
     paddingLeft: '0.5rem',
-  },
+  }
 }
 
 export default Message

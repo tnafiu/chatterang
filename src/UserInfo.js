@@ -3,17 +3,17 @@ import React from 'react'
 import Avatar from './Avatar'
 import SignOut from './SignOut'
 
-const UserInfo = ({user}) => {
+const UserInfo = ({ user, signOut }) => {
   return (
     <div
       className="UserInfo"
       style={styles.info}
     >
-    <Avatar user={user} style={styles.avatar} />
-    <div className="user" style={styles.user}>
-      {user.userName}
-    </div>
-    <SignOut/>
+      <Avatar user={user} style={styles.avatar} />
+      <div className="user" style={styles.user}>
+        {user.userName}
+      </div>
+      <SignOut signOut={signOut} />
     </div>
   )
 }

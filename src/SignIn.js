@@ -22,14 +22,7 @@ class SignIn extends Component {
   }
 
   authenticate = () => {
-    auth
-      .signInWithPopup(googleProvider)
-      .then(
-        response => {
-          console.log(response.user)
-          this.props.handleAuth(response.user)
-        }
-      )
+    auth.signInWithPopup(googleProvider)
   }
 
   render() {

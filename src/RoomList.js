@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
-import base from './base'
 
 import RoomLink from './RoomLink'
+import base from './base'
 
 class RoomList extends Component {
   state = {
@@ -22,7 +22,7 @@ class RoomList extends Component {
   addRoom = (room) => {
     const rooms = {...this.state.rooms}
     rooms[room.name] = room
-    this.setState({rooms})
+    this.setState({ rooms })
   }
 
   render() {
@@ -35,11 +35,11 @@ class RoomList extends Component {
           {
             Object.keys(this.state.rooms).map(
               roomName => (
-                <RoomLink 
-                  key= {roomName} 
+                <RoomLink
+                  key={roomName}
                   room={this.state.rooms[roomName]}
-                  
-                  />
+                  loadRoom={this.props.loadRoom}
+                />
               )
             )
           }
@@ -62,24 +62,6 @@ const styles = StyleSheet.create({
     listStyle: 'none',
     marginLeft: 0,
     paddingLeft: 0,
-  },
-
-  item: {
-    marginBottom: '0.5rem',
-  },
-
-  link: {
-    display: 'block',
-    color: 'whitesmoke',
-    textDecoration: 'none',
-
-    '::before': {
-      content: '"# "',
-    },
-
-    ':hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    }
   },
 })
 

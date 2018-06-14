@@ -18,7 +18,7 @@ const Sidebar = ({ user, signOut, loadRoom }) => {
       >
         XTBC 18
       </h1>
-      <RoomList loadRoom={loadRoom}/>
+      <RoomList loadRoom={loadRoom} />
     </aside>
   )
 }

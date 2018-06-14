@@ -2,14 +2,14 @@ import React from 'react'
 
 import Message from './Message'
 
-const MessageList = ({messages, room}) => {
+const MessageList = ({ messages, room }) => {
   return (
     <div className="MessageList" style={styles.list}>
       <div className="roomAnnouncement" style={styles.announcement}>
-        <h3 style={styles.h3}> 
+        <h3 style={styles.h3}>
           #{room.name}
         </h3>
-        <p>This is the very beginning of the {room.name} room.</p>
+        <p>This is the very beginning of the #{room.name} room.</p>
       </div>
 
       {

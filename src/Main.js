@@ -12,7 +12,7 @@ class Main extends Component {
   }
 
   loadRoom = (room) => {
-    this.setState({room})
+    this.setState({ room })
   }
 
   render() {
@@ -23,9 +23,10 @@ class Main extends Component {
           signOut={this.props.signOut}
           loadRoom={this.loadRoom}
         />
-        <Chat 
-          user={this.props.user} 
-          room={this.state.room}/>
+        <Chat
+          user={this.props.user}
+          room={this.state.room}
+        />
       </div>
     )
   }

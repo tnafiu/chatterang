@@ -11,12 +11,17 @@ class Main extends Component {
     },
   }
 
+  loadRoom = (room) => {
+    this.setState({room})
+  }
+
   render() {
     return (
       <div className="Main" style={styles}>
         <Sidebar
           user={this.props.user}
           signOut={this.props.signOut}
+          loadRoom={this.loadRoom}
         />
         <Chat 
           user={this.props.user} 

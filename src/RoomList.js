@@ -40,6 +40,7 @@ class RoomList extends Component {
       return (
         <RoomForm
           hideRoomForm={this.hideRoomForm}
+          addRoom={this.addRoom}
         />
       )
     } else {

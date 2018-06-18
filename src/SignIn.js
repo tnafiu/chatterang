@@ -27,7 +27,7 @@ class SignIn extends Component {
     auth.signInWithPopup(gitHubProvider)
   }
 
-  authenticateGitHub = () => {
+  authenticateFacebook = () => {
     auth.signInWithPopup(gitHubProvider)
   }
 
@@ -74,8 +74,16 @@ class SignIn extends Component {
               className={css(styles.button)}
               onClick={this.authenticateGitHub}
             >
-              <i className={`fab fa-google ${css(styles.brandIcon)}`}></i>
+              <i className={`fab fa-github ${css(styles.brandIcon)}`}></i>
               Sign in with GitHub
+            </button>
+            <button
+              type="button"
+              className={css(styles.button)}
+              onClick={this.authenticateFacebook}
+            >
+              <i className={`fab fa-facebook ${css(styles.brandIcon)}`}></i>
+              Sign in with Facebook
             </button>
           </form>
           <div className="blurb">

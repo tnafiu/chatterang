@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 
-import { auth, googleProvider } from './base'
+import { auth, googleProvider, gitHubProvider } from './base'
 
 class SignIn extends Component {
   state = {
     email: '',
+    gitHub: '',
+    facebook:'',
   }
 
   handleChange = (ev) => {
@@ -14,15 +16,19 @@ class SignIn extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault()
-    this.props.handleAuth({
-      uid: '234243',
-      displayName: this.state.email,
-      email: this.state.email,
-    })
+    // do something?
   }
 
-  authenticate = () => {
+  authenticateGoogle = () => {
     auth.signInWithPopup(googleProvider)
+  }
+
+  authenticateGitHub = () => {
+    auth.signInWithPopup(gitHubProvider)
+  }
+
+  authenticateGitHub = () => {
+    auth.signInWithPopup(gitHubProvider)
   }
 
   render() {
@@ -31,7 +37,7 @@ class SignIn extends Component {
         <header className={css(styles.header)}>
           <span className={css(styles.title)}>
             <i className="fas fa-hashtag"></i>
-            Chatarang
+            Chatterang
           </span>
         </header>
         <main className={css(styles.main)}>
@@ -58,16 +64,23 @@ class SignIn extends Component {
             <button
               type="button"
               className={css(styles.button)}
-              onClick={this.authenticate}
+              onClick={this.authenticateGoogle}
             >
               <i className={`fab fa-google ${css(styles.brandIcon)}`}></i>
               Sign in with Google
             </button>
+            <button
+              type="button"
+              className={css(styles.button)}
+              onClick={this.authenticateGitHub}
+            >
+              <i className={`fab fa-google ${css(styles.brandIcon)}`}></i>
+              Sign in with GitHub
+            </button>
           </form>
-
           <div className="blurb">
             <h2 className={css(styles.h2)}>You're in good company.</h2>
-            <p>Ones of people are already using Chatarang!</p>
+            <p>Ones of people are already using Chatterang!</p>
           </div>
         </main>
       </div>

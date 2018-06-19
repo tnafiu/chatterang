@@ -6,6 +6,7 @@ import Chat from './Chat'
 class Main extends Component {
   state = {
     room: {},
+    roomList: {},
   }
 
   componentDidMount() {

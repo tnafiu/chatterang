@@ -7,16 +7,20 @@ import SignIn from './SignIn'
 import Main from './Main'
 
 class App extends Component {
+  constructor() {
+    super()
+
+    const user = JSON.parse(localStorage.getItem('user')) || {}
+    if (user) {
+      this.setState({ user })
+    }
+  }
+
   state = {
     user: {},
   }
 
   componentDidMount() {
-    const user = JSON.parse(localStorage.getItem('user'))
-    if (user) {
-      this.setState({ user })
-    }
-
     auth.onAuthStateChanged(
       user => {
         if (user) {

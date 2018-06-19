@@ -4,21 +4,10 @@ import { Route, Switch, Link } from 'react-router-dom'
 
 import RoomLink from './RoomLink'
 import RoomForm from './RoomForm'
-import base from './base'
 
 class RoomList extends Component {
   state = {
     rooms: {},
-  }
-
-  componentDidMount() {
-    base.syncState(
-      'rooms',
-      {
-        context: this,
-        state: 'rooms',
-      }
-    )
   }
 
   addRoom = (room) => {

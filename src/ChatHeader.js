@@ -26,8 +26,7 @@ const styles = {
   header: {
     backgroundColor: '#f3f3f3',
     borderBottom: '1px solid #ccc',
-    height: '3rem',
-    padding: '0 1rem',
+    padding: '0.25rem 1rem',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',

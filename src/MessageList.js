@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 import Message from './Message'
 
@@ -24,7 +24,7 @@ class MessageList extends Component {
           </h3>
           <p>This is the very beginning of the #{room.name} room.</p>
         </div>
-  
+
         {
           messages.map(msg => (
             <Message key={msg.id} message={msg} />

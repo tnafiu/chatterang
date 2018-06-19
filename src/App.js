@@ -71,6 +71,11 @@ class App extends Component {
   }
 
   render() {
+    const mainProps= {
+      user:this.state.user,
+      signOut:this.signOut,
+      users:this.state.users,
+    }
     return (
       <div className="App">
         <Switch>
@@ -86,11 +91,10 @@ class App extends Component {
             path="/rooms/:roomName"
             render={navProps => (
               this.signedIn()
-                ? <Main
-                    user={this.state.user}
-                    signOut={this.signOut}
-                    {...navProps}
-                  />
+              ? <Main
+              {...mainProps}
+              {...navProps}
+            />
                 : <Redirect to="/sign-in" />
             )}
           />

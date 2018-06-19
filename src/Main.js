@@ -45,6 +45,16 @@ class Main extends Component {
     this.props.history.push(`/rooms/${roomName}`)
   }
 
+  removeRoom = (room) => {
+    const rooms = {...this.state.rooms}
+    rooms[room.name] = null
+
+    this.setState(
+      { rooms },
+      this.loadValidRoom
+    )
+  }
+
   render() {
     return (
       <div className="Main" style={styles}>
@@ -55,6 +65,7 @@ class Main extends Component {
         <Chat
           user={this.props.user}
           room={this.state.room}
+          removeRoom={this.removeRoom}
         />
       </div>
     )

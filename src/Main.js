@@ -37,7 +37,7 @@ class Main extends Component {
   }
 
   filterRoomByName = () => {
-    Object.keys(this.state.roomList)
+    return Object.keys(this.state.roomList)
       .filter(roomName => {
         const room = this.state.roomList[roomName]
         if(!room) return false
@@ -63,7 +63,7 @@ class Main extends Component {
   }
 
   loadValidRoom = () => {
-    const realRoomName = Object.keys(this.state.roomList).find(
+    const realRoomName = this.filteredRoomNames().find(
       roomName => this.state.roomList[roomName]
     )
 

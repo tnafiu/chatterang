@@ -2,23 +2,22 @@ import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 import { Route, Switch, Link } from 'react-router-dom'
 
-
 import RoomLink from './RoomLink'
 import RoomForm from './RoomForm'
 
 class RoomList extends Component {
-
   render() {
-    const {roomList} = this.props
+    const { roomList } = this.props
 
     return (
       <Switch>
         <Route
-          path="/rooms/new"
+          path="/roomList/new"
           render={navProps => (
             <RoomForm
               addRoom={this.props.addRoom}
               users={this.props.users}
+              user={this.props.user}
               {...navProps}
             />
           )}
@@ -33,7 +32,7 @@ class RoomList extends Component {
                   <h2 className={css(styles.h2)}>Rooms</h2>
                   <Link
                     className={css(styles.button)}
-                    to="/rooms/new"
+                    to="/roomList/new"
                   >
                     <i className="fas fa-plus-circle"></i>
                   </Link>
@@ -58,6 +57,7 @@ class RoomList extends Component {
     )
   }
 }
+
 
 const styles = StyleSheet.create({
   nav: {

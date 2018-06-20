@@ -6,7 +6,7 @@ const RoomLink = ({ room }) => {
   return (
     <li className={css(styles.item)}>
       <NavLink
-        to={`/rooms/${room.name}`}
+        to={`/roomList/${room.name}`}
         className={css(styles.link)}
       >
         {room.name}

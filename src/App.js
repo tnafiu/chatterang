@@ -83,12 +83,12 @@ class App extends Component {
             path="/sign-in"
             render={() => (
               this.signedIn()
-                ? <Redirect to="/rooms/general" />
+                ? <Redirect to="/roomList/general" />
                 : <SignIn />
             )}
           />
           <Route
-            path="/rooms/:roomName"
+            path="/roomList/:roomName"
             render={navProps => (
               this.signedIn()
               ? <Main
@@ -101,7 +101,7 @@ class App extends Component {
           <Route
             render={() => (
               this.signedIn()
-                ? <Redirect to="/rooms/general" />
+                ? <Redirect to="/roomList/general" />
                 : <Redirect to="/sign-in" />
             )}
           />

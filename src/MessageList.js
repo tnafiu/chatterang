@@ -20,12 +20,12 @@ class MessageList extends Component {
       <div className="MessageList" style={styles.list}>
         <div className="roomAnnouncement" style={styles.announcement}>
           <h3 style={styles.h3}>
-            #{room.displayName}
+            #{room.name}
           </h3>
           {
             room.dm
               ? <p>This is the very beginning of the direct message.</p>
-              : <p>This is the very beginning of the #{room.displayName} room.</p>
+              : <p>This is the very beginning of the #{room.name} room.</p>
           }
         </div>
 

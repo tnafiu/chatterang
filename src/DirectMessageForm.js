@@ -23,7 +23,7 @@ class DirectMessageForm extends Component {
         const user = users[uid]
         return {
           value: uid,
-          label: `${user.displayName} (${user.email})`,
+          label: `${user.name} (${user.email})`,
         }
       }
     )

@@ -73,6 +73,8 @@ class Main extends Component {
   }
 
   addRoom = (room) => {
+    room.displayName = room.name
+    
     const { user } = this.props
     if (!room.public) {
       room.members.push({

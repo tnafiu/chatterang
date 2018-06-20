@@ -6,29 +6,14 @@ import { auth, googleProvider, gitHubProvider } from './base'
 class SignIn extends Component {
   state = {
     email: '',
-    gitHub: '',
-    facebook:'',
   }
 
   handleChange = (ev) => {
     this.setState({ email: ev.target.value })
   }
 
-  handleSubmit = (ev) => {
-    ev.preventDefault()
-    // do something?
-  }
-
-  authenticateGoogle = () => {
-    auth.signInWithPopup(googleProvider)
-  }
-
-  authenticateGitHub = () => {
-    auth.signInWithPopup(gitHubProvider)
-  }
-
-  authenticateFacebook = () => {
-    auth.signInWithPopup(gitHubProvider)
+  authenticate = (provider) => {
+    auth.signInWithPopup(provider)
   }
 
   render() {
@@ -37,64 +22,44 @@ class SignIn extends Component {
         <header className={css(styles.header)}>
           <span className={css(styles.title)}>
             <i className="fas fa-hashtag"></i>
-            Chatterang
+            Chatarang
           </span>
         </header>
         <main className={css(styles.main)}>
           <form
             className={css(styles.form)}
-            onSubmit={this.handleSubmit}
           >
             <h1>Welcome!</h1>
-            {/* <label htmlFor="email" className={css(styles.label)}>
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              className={css(styles.input)}
-              onChange={this.handleChange}
-              autoFocus
-            />
-            <button type="submit" className={css(styles.button)}>
-              Sign In
-            </button>
-            or */}
 
             <button
               type="button"
               className={css(styles.button)}
-              onClick={this.authenticateGoogle}
+              onClick={() => this.authenticate(googleProvider)}
             >
               <i className={`fab fa-google ${css(styles.brandIcon)}`}></i>
               Sign in with Google
             </button>
+
             <button
               type="button"
-              className={css(styles.button)}
-              onClick={this.authenticateGitHub}
+              className={css(styles.button, styles.github)}
+              onClick={() => this.authenticate(gitHubProvider)}
             >
               <i className={`fab fa-github ${css(styles.brandIcon)}`}></i>
               Sign in with GitHub
             </button>
-            <button
-              type="button"
-              className={css(styles.button)}
-              onClick={this.authenticateFacebook}
-            >
-              <i className={`fab fa-facebook ${css(styles.brandIcon)}`}></i>
-              Sign in with Facebook
-            </button>
           </form>
+
           <div className="blurb">
             <h2 className={css(styles.h2)}>You're in good company.</h2>
-            <p>Ones of people are already using Chatterang!</p>
+            <p>Ones of people are already using Chatarang!</p>
           </div>
         </main>
       </div>
     )
   }
 }
+
 const styles = StyleSheet.create({
   signIn: {
     display: 'flex',
@@ -102,6 +67,7 @@ const styles = StyleSheet.create({
     height: '100vh',
     backgroundColor: '#f6f6f6',
   },
+
   header: {
     backgroundColor: '#fff',
     height: '4rem',
@@ -111,6 +77,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     boxShadow: '0 1px 1px rgba(0,0,0,.1)',
   },
+
   title: {
     color: '#ff3344',
     fontWeight: 400,
@@ -118,6 +85,7 @@ const styles = StyleSheet.create({
     lineHeight: '80px',
     fontSize: '2rem',
   },
+
   main: {
     flex: 1,
     textAlign: 'center',
@@ -127,6 +95,7 @@ const styles = StyleSheet.create({
     margin: '0 auto',
     paddingBottom: '3rem',
   },
+
   form: {
     width: '40rem',
     backgroundColor: 'white',
@@ -134,11 +103,13 @@ const styles = StyleSheet.create({
     marginBottom: '2rem',
     paddingBottom: '2rem',
   },
+
   label: {
     display: 'block',
     textTransform: 'uppercase',
     color: '#999',
   },
+
   input: {
     width: '20rem',
     fontSize: '1.5rem',
@@ -152,12 +123,14 @@ const styles = StyleSheet.create({
       outline: 0,
     },
   },
+
   h2: {
     fontWeight: 'normal',
   },
+
   button: {
     display: 'block',
-    margin: '0 auto',
+    margin: '0 auto 1rem',
     padding: '1rem 2rem',
     fontSize: '1.2rem',
     borderRadius: '1rem',
@@ -165,6 +138,12 @@ const styles = StyleSheet.create({
     color: 'white',
     width: '20rem',
   },
+
+  github: {
+    marginBottom: 0,
+    backgroundColor: '#6e5494',
+  },
+
   brandIcon: {
     marginRight: '1rem',
   },

@@ -2,6 +2,7 @@ import React from 'react'
 
 import UserInfo from './UserInfo'
 import RoomList from './RoomList'
+import DirectMessageList from './DirectMessageList'
 
 const Sidebar = ({ user, signOut, users, roomList, addRoom }) => {
   return (
@@ -24,9 +25,16 @@ const Sidebar = ({ user, signOut, users, roomList, addRoom }) => {
         roomList={roomList}
         addRoom={addRoom}
       />
+      <DirectMessageList
+        users={users}
+        user={user}
+        roomList={roomList}
+        addRoom={addRoom}
+      />
     </aside>
   )
 }
+
 
 const styles = {
   sidebar: {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
+import base from './base'
 import Sidebar from './Sidebar'
 import Chat from './Chat'
-import base from './base'
 
 class Main extends Component {
   state = {
@@ -18,7 +18,7 @@ class Main extends Component {
       {
         context: this,
         state: 'roomList',
-        then: () => this.loadRoom(roomName)
+        then: () => this.loadRoom(roomName),
       }
     )
   }
@@ -29,32 +29,34 @@ class Main extends Component {
     }
   }
 
-  filterUser = (room) => {
+  filteredroomList = () => {
+    return this.filteredRoomNames()
+               .map(roomName => this.state.roomList[roomName])
+  }
+
+  filteredRoomNames = () => {
+    return Object.keys(this.state.roomList)
+                 .filter(roomName => {
+                   const room = this.state.roomList[roomName]
+                   if (!room) return false
+
+                   return room.public || this.includesCurrentUser(room)
+                 })
+  }
+
+  includesCurrentUser = (room) => {
     const members = room.members || []
     return members.find(
       userOption => userOption.value === this.props.user.uid
     )
   }
 
-  filterRoomByName = () => {
-    return Object.keys(this.state.roomList)
-      .filter(roomName => {
-        const room = this.state.roomList[roomName]
-        if(!room) return false
-
-        return room.public || this.filterUser(room)
-      })
-  }
-
-  loadFilteredRoom = () => {
-    return this.filterRoomByName()
-               .map(roomName => this.state.roomList[roomName])
-  }
-
   loadRoom = (roomName) => {
-    if (roomName === 'new') return null
+    if (roomName === 'new' || roomName === 'new-direct-message') return null
 
-    const room = this.state.roomList[roomName]
+    const room = this.filteredroomList()
+                     .find(room => room.name === roomName)
+
     if (room) {
       this.setState({ room })
     } else {
@@ -63,7 +65,7 @@ class Main extends Component {
   }
 
   loadValidRoom = () => {
-    const realRoomName = this.filterRoomByName().find(
+    const realRoomName = this.filteredRoomNames().find(
       roomName => this.state.roomList[roomName]
     )
 
@@ -71,6 +73,20 @@ class Main extends Component {
   }
 
   addRoom = (room) => {
+    const { user } = this.props
+    if (!room.public) {
+      room.members.push({
+        value: user.uid,
+        label: `${user.displayName} (${user.email})`,
+      })
+    }
+
+    if (room.dm) {
+      const memberNames = room.members.map(member => member.label.split(' ')[0])
+      room.displayName = memberNames.join(', ')
+      room.name = room.members.map(member => member.value).join('-')
+    }
+
     const roomList = {...this.state.roomList}
     roomList[room.name] = room
     this.setState({ roomList })
@@ -93,7 +109,7 @@ class Main extends Component {
           user={this.props.user}
           users={this.props.users}
           signOut={this.props.signOut}
-          roomList={this.loadFilteredRoom()}
+          roomList={this.filteredroomList()}
           addRoom={this.addRoom}
         />
         <Chat

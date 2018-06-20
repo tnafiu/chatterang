@@ -9,7 +9,7 @@ import RoomForm from './RoomForm'
 class RoomList extends Component {
 
   render() {
-    const {rooms} = this.props
+    const {roomList} = this.props
 
     return (
       <Switch>
@@ -40,11 +40,11 @@ class RoomList extends Component {
                 </div>
                 <ul className={css(styles.list)}>
                   {
-                    Object.keys(rooms).map(
+                    Object.keys(roomList).map(
                       roomName => (
                         <RoomLink
                           key={roomName}
-                          room={rooms[roomName]}
+                          room={roomList[roomName]}
                         />
                       )
                     )

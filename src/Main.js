@@ -14,10 +14,10 @@ class Main extends Component {
     const { roomName } = this.props.match.params
 
     base.syncState(
-      'rooms',
+      'roomList',
       {
         context: this,
-        state: 'rooms',
+        state: 'roomList',
         then: () => this.loadRoom(roomName)
       }
     )
@@ -29,22 +29,32 @@ class Main extends Component {
     }
   }
 
-  filterUser() {
-
+  filterUser = (room) => {
+    const members = room.members || []
+    return members.find(
+      userOption => userOption.value === this.props.user.uid
+    )
   }
 
-  filterRoomByName() {
+  filterRoomByName = () => {
+    Object.keys(this.state.roomList)
+      .filter(roomName => {
+        const room = this.state.roomList[roomName]
+        if(!room) return false
 
+        return room.public || this.filterUser(room)
+      })
   }
 
-  loadFilteredRoom() {
-
+  loadFilteredRoom = () => {
+    return this.filterRoomByName()
+               .map(roomName => this.state.roomList[roomName])
   }
 
   loadRoom = (roomName) => {
     if (roomName === 'new') return null
 
-    const room = this.state.rooms[roomName]
+    const room = this.state.roomList[roomName]
     if (room) {
       this.setState({ room })
     } else {
@@ -53,25 +63,25 @@ class Main extends Component {
   }
 
   loadValidRoom = () => {
-    const realRoomName = Object.keys(this.state.rooms).find(
-      roomName => this.state.rooms[roomName]
+    const realRoomName = Object.keys(this.state.roomList).find(
+      roomName => this.state.roomList[roomName]
     )
 
-    this.props.history.push(`/rooms/${realRoomName}`)
+    this.props.history.push(`/roomList/${realRoomName}`)
   }
 
   addRoom = (room) => {
-    const rooms = {...this.state.rooms}
-    rooms[room.name] = room
-    this.setState({ rooms })
+    const roomList = {...this.state.roomList}
+    roomList[room.name] = room
+    this.setState({ roomList })
   }
 
   removeRoom = (room) => {
-    const rooms = {...this.state.rooms}
-    rooms[room.name] = null
+    const roomList = {...this.state.roomList}
+    roomList[room.name] = null
 
     this.setState(
-      { rooms },
+      { roomList },
       this.loadValidRoom
     )
   }
@@ -83,7 +93,7 @@ class Main extends Component {
           user={this.props.user}
           users={this.props.users}
           signOut={this.props.signOut}
-          rooms={this.state.rooms}
+          roomList={this.loadFilteredRoom()}
           addRoom={this.addRoom}
         />
         <Chat

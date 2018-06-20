@@ -29,6 +29,18 @@ class Main extends Component {
     }
   }
 
+  filterUser() {
+
+  }
+
+  filterRoomByName() {
+
+  }
+
+  loadFilteredRoom() {
+
+  }
+
   loadRoom = (roomName) => {
     if (roomName === 'new') return null
 
@@ -48,6 +60,12 @@ class Main extends Component {
     this.props.history.push(`/rooms/${realRoomName}`)
   }
 
+  addRoom = (room) => {
+    const rooms = {...this.state.rooms}
+    rooms[room.name] = room
+    this.setState({ rooms })
+  }
+
   removeRoom = (room) => {
     const rooms = {...this.state.rooms}
     rooms[room.name] = null
@@ -65,6 +83,8 @@ class Main extends Component {
           user={this.props.user}
           users={this.props.users}
           signOut={this.props.signOut}
+          rooms={this.state.rooms}
+          addRoom={this.addRoom}
         />
         <Chat
           user={this.props.user}

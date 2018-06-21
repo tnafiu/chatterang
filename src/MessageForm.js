@@ -26,6 +26,7 @@ class MessageForm extends Component {
           <i className="fas fa-comment-alt"></i>
         </div>
         <input
+          required
           type="text"
           name="body"
           placeholder="Type a message..."

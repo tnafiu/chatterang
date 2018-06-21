@@ -56,5 +56,4 @@ const styles = {
     marginTop: 0,
   },
 }
-
 export default Sidebar

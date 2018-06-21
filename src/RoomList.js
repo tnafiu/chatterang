@@ -29,7 +29,7 @@ class RoomList extends Component {
                 className={`RoomList ${css(styles.nav)}`}
               >
                 <div className={css(styles.heading)}>
-                  <h2 className={css(styles.h2)}>Rooms</h2>
+                  <h2 className={css(styles.h2)}>Room</h2>
                   <Link
                     className={css(styles.button)}
                     to="/roomList/new"

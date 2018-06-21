@@ -148,6 +148,7 @@ const styles = StyleSheet.create({
     height: '100vh',
     width: '100vw',
     backgroundColor: '#f6f6f6',
+    zIndex: 1000,
   },
 
   title: {

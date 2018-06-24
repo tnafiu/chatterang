@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
 
-import { auth, googleProvider, gitHubProvider } from './base'
+import { auth, googleProvider, gitHubProvider, facebookProvider } from './base'
 
 class SignIn extends Component {
   state = {
@@ -47,6 +47,15 @@ class SignIn extends Component {
             >
               <i className={`fab fa-github ${css(styles.brandIcon)}`}></i>
               Sign in with GitHub
+            </button>
+
+            <button
+              type="button"
+              className={css(styles.button, styles.facebook)}
+              onClick={() => this.authenticate(facebookProvider)}
+            >
+              <i className={`fab fa-facebook ${css(styles.brandIcon)}`}></i>
+              Sign in with Facebook
             </button>
           </form>
 
@@ -142,6 +151,11 @@ const styles = StyleSheet.create({
   github: {
     marginBottom: 0,
     backgroundColor: '#6e5494',
+  },
+
+  facebook: {
+    marginBottom: 0,
+    backgroundColor: '#3B5998',
   },
 
   brandIcon: {
